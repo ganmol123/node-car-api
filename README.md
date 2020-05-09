@@ -1,12 +1,14 @@
-# node-car-api
+# node-car-api 
+Internship Backend Dev Task
 
-WhitePanda Backend Dev Task
+A basic Car Rental Agency api to perform basic operations like booking a car, adding cars, deleting a car, etc.
 
 Features Implemeted:
-- Get car list
+- Get all car list
+- Add a new Cars
 - Fetch all bookings
-- Add a new Car
-- Create a booking
+- Make a booking
+- Delete a car (Only if not previously booked)
 
-heroku link:              https://node-car-app.herokuapp.com/
+Heroku link:              https://node-car-app.herokuapp.com/
 Postman Collection link:  https://www.getpostman.com/collections/edf9ed35bf6c14cd6166
