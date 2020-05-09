@@ -7,7 +7,8 @@ const bookingSchema = mongoose.Schema({
     cust_ph: { type: Number, required: true},
     days: {type: Number, default: 1},
     issue_date: {type: String},
-    return_date: {type: String},  
+    return_date: {type: String}
+    //booked_bool: {type: Boolean, default: false}  
 })
 
 module.exports = mongoose.model('Booking_Model', bookingSchema);

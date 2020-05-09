@@ -7,9 +7,9 @@ const Car = require("../models/car");
 
 const  BookingController = require('../controllers/bookings');
 
-router.get('/', BookingController.get_all_bookings );
+router.get('/getAllbookings', BookingController.get_all_bookings );
 
-router.post('/', BookingController.create_booking );
+router.post('/createBooking', BookingController.create_booking );
 
 module.exports = router;
 

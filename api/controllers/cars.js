@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Car_Model = require('../models/car')
+const Book = require('../models/booking')
 
 //Get a list of all the cars
 exports.get_all_cars = (req, res, next) => {
@@ -58,7 +59,8 @@ exports.add_car = (req, res, next) => {
 
 //delete a car
 exports.delete_car = (req, res, next) => {
-    const id = req.params.carid;
+    const id = req.params.car_id;
+    if(!Book.findById(id)){
     Car_Model.remove({ _id: id })
         .exec()
         .then(result => {
@@ -68,5 +70,48 @@ exports.delete_car = (req, res, next) => {
             console.log(err);
             res.status(500).json({error: err})
         });
+    }
+    else{
+        res.status(201).json({
+            message: "This car is cannot be deleted as it's already booked"
+        })
+    }
+}
+
+//get Booking information of a particular car
+exports.get_car_booking = (req, res, next) => {
+    const id = req.params.car_id;
+    if(Book.findById(id))
+    {
+        var query = { carid: id } 
+        Book.find(query)
+        .select('-__v')
+        .populate('car', 'name')
+        .exec()
+        .then(docs => {
+            res.status(200).json({
+                count: docs.length,
+                bookings:  docs.map( doc => {
+                    return {
+                        _id:         doc._id,
+                        carid:       doc.carid,
+                        cust_name:   doc.cust_name,
+                        cust_ph:     doc.cust_ph,
+                        days:        doc.days,
+                        issue_date:  doc.issue_date,
+                        return_date: doc.return_date
+                    }
+                })
+            });
+        })
+        .catch(err => {
+            res.status(500).json({error:err})
+        })
+    }
+    else{
+        res.status(201).json({
+            message: "Booking for the above mentioned car does not exists."
+        })
+    }
 }
 
