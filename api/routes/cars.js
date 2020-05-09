@@ -5,10 +5,12 @@ const Car_Model = require('../models/car')
 
 const  CarController = require('../controllers/cars');
 
-router.get('/', CarController.get_all_cars)
+router.get('/getAllCars', CarController.get_all_cars)
 
-router.post('/', CarController.add_car)
+router.post('/AddCar', CarController.add_car)
 
-router.delete('/:carid', CarController.delete_car)
+router.delete('/DeleteCar/:car_id', CarController.delete_car)
+
+router.get('/getCarBooking/:car_id', CarController.get_car_booking)
  
 module.exports = router;

@@ -20,9 +20,7 @@ app.use((req, res, next) => {
 })
 
 //Connecting to MongoDB 
-mongoose.connect('mongodb+srv://node-car-api:'
-    + process.env.MONGO_ATLAS_PW +
-    '@cluster0-qvoey.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://nodeplay:loda@cluster1-nvixw.mongodb.net/test?retryWrites=true&w=majority',
     { useUnifiedTopology: true, useNewUrlParser: true })
     .then(() => console.log('Database Connected'))
     .catch(err => console.log(err));
